@@ -36,7 +36,7 @@ uint32_t g_ui32SysClock;
 //
 //*****************************************************************************
 
-#define UART_RXBUF_SIZE         10
+#define UART_RXBUF_SIZE         1
 
 
 
@@ -221,15 +221,6 @@ void
 InitUART0Transfer(void)
 {
 
-	//
-	// Set both the TX and RX trigger thresholds to 4.  This will be used by
-	// the uDMA controller to signal when more data should be transferred.  The
-	// uDMA TX and RX channels will be configured so that it can transfer 4
-	// bytes in a burst when the UART is ready to transfer more data.
-    //
-
-    UARTFIFOLevelSet(UART0_BASE, UART_FIFO_TX4_8, UART_FIFO_RX4_8);
-
 
 	//
 	// Enable the UART for operation, and enable the uDMA interface for both TX
@@ -259,14 +250,14 @@ InitUART0Transfer(void)
     // channel is used to transfer a block of data from the UART to a buffer.
     // The data size is 8 bits.  The source address increment is none
     // since the data is coming from the UART0.The destination address increment is
-    // 8 bits since the data is to be written to a buffer.  The
-    // arbitration size is set to 4, which matches the UART RX FIFO trigger
+    // NONE since the data is to be written to a single buffer.  The
+    // arbitration size is set to 1, which matches the UART RX FIFO trigger
     // threshold.
     //
     uDMAChannelControlSet(UDMA_CHANNEL_UART0RX | UDMA_PRI_SELECT,
                               UDMA_SIZE_8 | UDMA_SRC_INC_NONE |
-                              UDMA_DST_INC_8 |
-                              UDMA_ARB_4);
+                              UDMA_DST_INC_NONE |
+                              UDMA_ARB_1);
 
     //
     // Set up the transfer parameters for the uDMA UART RX channel.  This will
@@ -296,16 +287,16 @@ InitUART0Transfer(void)
     //
     // Configure the control parameters for the UART TX.  The uDMA UART TX
     // channel is used to transfer a block of data from a buffer to the UART.
-    // The data size is 8 bits.  The source address increment is 8-bit bytes
+    // The data size is 8 bits.  The source address increment is NONE
     // since the data is coming from a buffer.  The destination increment is
     // none since the data is to be written to the UART data register.  The
-    // arbitration size is set to 4, which matches the UART TX FIFO trigger
+    // arbitration size is set to 1, which matches the UART TX FIFO trigger
     // threshold.
     //
     uDMAChannelControlSet(UDMA_CHANNEL_UART0TX | UDMA_PRI_SELECT,
-                                 UDMA_SIZE_8 | UDMA_SRC_INC_8 |
+                                 UDMA_SIZE_8 | UDMA_SRC_INC_NONE |
                                  UDMA_DST_INC_NONE |
-                                 UDMA_ARB_4);
+                                 UDMA_ARB_1);
     //
     // Set up the transfer parameters for the uDMA UART TX channel.  This will
     // configure the transfer source and destination and the transfer size.
