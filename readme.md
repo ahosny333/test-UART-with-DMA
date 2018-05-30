@@ -18,12 +18,10 @@ https://sites.google.com/site/luiselectronicprojects/tutorials/tiva-tutorials/ti
 
 
 
-```
+
  same as we did in test-UART-for-EK-TM4C1294XL-connected-LaunchPad project 
  please see that link
- https://github.com/ahosny333/test-UART-for-EK-TM4C1294XL-connected-LaunchPad-
- 
-```
+https://github.com/ahosny333/test-UART-for-EK-TM4C1294XL-connected-LaunchPad-/blob/master/README.md 
 
 
 
