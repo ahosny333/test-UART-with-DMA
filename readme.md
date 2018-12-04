@@ -22,4 +22,7 @@ for more details about TIVA DMA it is sugeested to read this [tutorial](https://
  please see that [link](https://github.com/ahosny333/test-UART-for-EK-TM4C1294XL-connected-LaunchPad-/blob/master/README.md)
 
 
-
+## Sponsored by
+<a href = "https://the-diy-life.co">
+<img src="https://the-diy-life.co/images/logo_diylife.jpg"  width="248" height="248">
+</a>
